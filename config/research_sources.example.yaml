@@ -1,0 +1,136 @@
+version: 1
+
+global:
+  timezone: Europe/Kyiv
+  daily_run_time: "07:30"
+  max_items_per_run: 50
+  max_findings_after_dedup: 15
+  write_reports: true
+  update_backlog: true
+  auto_modify_code: false
+
+projects:
+  - id: openclaw
+    name: OpenClaw Personal Agent
+    priority_topics:
+      - agents
+      - memory
+      - retrieval
+      - browser_agent
+      - voice
+      - workflow
+      - audit
+      - local_models
+      - deployment
+  - id: airys
+    name: AIRYS
+    priority_topics:
+      - medical_logic
+      - memory
+      - workflow
+      - business_metrics
+      - reminders
+      - admin_ux
+      - voice
+      - multimodal
+  - id: medical_agents
+    name: Medical Agents
+    priority_topics:
+      - triage
+      - safety
+      - audit
+      - traceability
+      - knowledge_base
+      - multimodal
+  - id: automations
+    name: Automations
+    priority_topics:
+      - n8n
+      - orchestration
+      - integrations
+      - observability
+      - cost
+      - reliability
+
+sources:
+  - id: anthropic_blog
+    type: rss
+    enabled: true
+    category: official
+    url: "https://www.anthropic.com/news/rss.xml"
+    weight: 1.0
+
+  - id: openai_news
+    type: rss
+    enabled: true
+    category: official
+    url: "https://openai.com/news/rss.xml"
+    weight: 1.0
+
+  - id: meta_newsroom
+    type: rss
+    enabled: true
+    category: official
+    url: "https://about.fb.com/news/feed/"
+    weight: 0.9
+
+  - id: google_blog
+    type: rss
+    enabled: true
+    category: official
+    url: "https://blog.google/rss/"
+    weight: 0.9
+
+  - id: github_releases_openclaw
+    type: github_releases
+    enabled: true
+    category: repo
+    repo: "openclaw/openclaw"
+    weight: 1.0
+
+  - id: selected_agent_repos
+    type: github_releases
+    enabled: true
+    category: repo_group
+    repos:
+      - "openclaw/openclaw"
+    weight: 0.9
+
+filters:
+  include_topics:
+    - agents
+    - memory
+    - retrieval
+    - browser_agent
+    - voice
+    - workflow
+    - audit
+    - medical_logic
+    - business_metrics
+    - local_models
+    - deployment
+    - multimodal
+
+  exclude_keywords:
+    - crypto giveaway
+    - generic lifestyle
+    - celebrity gossip
+
+scoring:
+  weights:
+    relevance_openclaw: 0.20
+    relevance_airys: 0.20
+    practical_value: 0.15
+    business_impact: 0.10
+    maturity: 0.10
+    partial_adoptability: 0.10
+    novelty: 0.05
+    evidence_strength: 0.05
+    integration_effort: -0.025
+    risk: -0.025
+
+output:
+  reports_dir: "docs/daily-research"
+  template_file: "docs/daily-research/TEMPLATE.md"
+  backlog_file: "docs/IMPROVEMENT_BACKLOG.md"
+  watchlist_file: "docs/INNOVATION_WATCHLIST.md"

@@ -29,5 +29,8 @@ jobs:
       - name: Install package
         run: python -m pip install -e .[dev]
 
-      - name: Run daily improvement CLI
-        run: daily-improvement --source data/daily_improvement/sample_raw_items.json --run-date 2026-04-25 --json
+      - name: Run daily improvement CLI sample mode
+        run: daily-improvement daily --source data/daily_improvement/sample_raw_items.json --run-date 2026-04-25 --json
+
+      - name: Run weekly synthesis smoke
+        run: daily-improvement weekly --reports-dir docs/daily-research --week-label ci --json

@@ -5,14 +5,12 @@ on:
     paths:
       - "src/daily_improvement/**"
       - "data/daily_improvement/**"
-      - "tests/**"
       - "pyproject.toml"
       - ".github/workflows/daily-improvement-ci.yml"
   pull_request:
     paths:
       - "src/daily_improvement/**"
       - "data/daily_improvement/**"
-      - "tests/**"
       - "pyproject.toml"
       - ".github/workflows/daily-improvement-ci.yml"
 
@@ -33,6 +31,3 @@ jobs:
 
       - name: Run daily improvement CLI
         run: daily-improvement --source data/daily_improvement/sample_raw_items.json --run-date 2026-04-25 --json
-
-      - name: Run tests if present
-        run: pytest

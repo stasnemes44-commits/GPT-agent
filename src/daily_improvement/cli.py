@@ -9,11 +9,13 @@ from .sources import SourceLoadError
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run the daily improvement Phase 1 pipeline.")
+    parser = argparse.ArgumentParser(description="Run the daily improvement pipeline.")
     parser.add_argument("--source", default=None, help="Path to input JSON fixture or collected raw items file.")
+    parser.add_argument("--config", default=None, help="Path to research sources config for live collection mode.")
     parser.add_argument("--output-dir", default="docs/daily-research", help="Directory for markdown reports.")
     parser.add_argument("--backlog-path", default="docs/IMPROVEMENT_BACKLOG.md", help="Path to backlog markdown file.")
     parser.add_argument("--run-date", default=None, help="Optional run date in YYYY-MM-DD format.")
+    parser.add_argument("--max-items", type=int, default=None, help="Optional maximum number of raw items to process.")
     parser.add_argument("--json", action="store_true", help="Print result as JSON.")
     return parser
 
@@ -25,9 +27,11 @@ def main() -> int:
     try:
         result = run_daily_pipeline(
             source_path=Path(args.source) if args.source else None,
+            config_path=Path(args.config) if args.config else None,
             output_dir=Path(args.output_dir),
             backlog_path=Path(args.backlog_path),
             run_date=args.run_date,
+            max_items=args.max_items,
         )
     except SourceLoadError as exc:
         print(f"[daily_improvement] source error: {exc}")

@@ -1,0 +1,32 @@
+[
+  {
+    "source": "anthropic_blog",
+    "title": "Managed agents get improved tool orchestration for enterprise workflows",
+    "url": "https://example.com/managed-agents-orchestration",
+    "published_at": "2026-04-24T08:00:00Z",
+    "summary_raw": "A new release improves agent orchestration, tool reliability, and workflow structure for business use cases.",
+    "topic_guess": ["agents", "workflow"],
+    "source_type": "blog",
+    "source_category": "official"
+  },
+  {
+    "source": "medical_ai_news",
+    "title": "Clinical memory layer adds audit-friendly recall for patient workflows",
+    "url": "https://example.com/clinical-memory-layer",
+    "published_at": "2026-04-24T10:30:00Z",
+    "summary_raw": "The system focuses on structured memory, traceability, and safer recall inside clinical workflows.",
+    "topic_guess": ["medical_logic", "memory", "workflow"],
+    "source_type": "news",
+    "source_category": "secondary"
+  },
+  {
+    "source": "voice_ai_release",
+    "title": "Voice assistant update improves speech handling and reminder flows",
+    "url": "https://example.com/voice-reminders-update",
+    "published_at": "2026-04-24T12:15:00Z",
+    "summary_raw": "The release adds better voice interaction, reminder timing, and assistant response quality.",
+    "topic_guess": ["voice", "workflow"],
+    "source_type": "release",
+    "source_category": "official"
+  }
+]

@@ -5,9 +5,19 @@ from pathlib import Path
 
 from .models import RawItem
 
+DEFAULT_SAMPLE_PATH = Path("data/daily_improvement/sample_raw_items.json")
+
 
 class SourceLoadError(RuntimeError):
     """Raised when a source file cannot be loaded."""
+
+
+def ensure_sample_fixture(path: str | Path = DEFAULT_SAMPLE_PATH) -> Path:
+    """Return the sample fixture path or fail with a clear source-loading error."""
+    fixture_path = Path(path)
+    if not fixture_path.exists():
+        raise SourceLoadError(f"Sample fixture not found: {fixture_path}")
+    return fixture_path
 
 
 def load_raw_items_from_json(path: str | Path) -> list[RawItem]:
